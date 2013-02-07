@@ -17,12 +17,23 @@ import brown.matt.data.identifier.MeatIdentifiers;
 import brown.matt.data.identifier.MetalIdentifiers;
 import brown.matt.data.identifier.SoftIdentifiers;
 
+/*
+ * CommoditiesDataProvider interacts with market data from Yahoo and
+ * stores it as CommodityData objects
+ * @author Matthew Brown
+ */
 public class CommoditiesDataProvider {
 
+	//Yahoo Finance URL
 	private static final String BASE_URL = "http://download.finance.yahoo.com/d/quotes.csv?s=";
-	//Symbol, Name, last trade, date of last trade, time of last trade, open, high , low, day's change, Previous Close
+	//Info Tags (in order): Symbol, Name, last trade, date of last trade, time of last trade, open, high , low, day's change, Previous Close
 	private static final String TAGS = "&f=snl1d1t1ohgw1p";
 	
+	/*
+	 * Takes in a list of select commodities and returns a list of their corresponding data.
+	 * @param A list of brown.matt.data.CommodityIdentifier Strings of select data to retrieve
+	 * @returns A list of the requested CommodityData objects
+	 */
 	public static List<CommodityData> getSelectData(List<String> selections) throws IOException {
 		StringBuilder sb = new StringBuilder();
 		boolean first = true;
@@ -162,6 +173,11 @@ public class CommoditiesDataProvider {
 		return null;
 	}
 	
+	/*
+	 * Gets data for all energy commodities
+	 * @param none
+	 * @returns A list of the requested CommodityData objects
+	 */
 	public static List<CommodityData> getEnergyData() throws IOException {
 
 		String add = BASE_URL + EnergyIdentifiers.getAllEnergies() + TAGS;
@@ -169,6 +185,11 @@ public class CommoditiesDataProvider {
 		return parseData(add);
 	}
 	
+	/*
+	 * Gets data for all grain commodities
+	 * @param none
+	 * @returns A list of the requested CommodityData objects
+	 */
 	public static List<CommodityData> getGrainData() throws IOException {
 
 		String add = BASE_URL + GrainIdentifiers.getAllGrains() + TAGS;
@@ -176,6 +197,11 @@ public class CommoditiesDataProvider {
 		return parseData(add);
 	}
 	
+	/*
+	 * Gets data for all meat commodities
+	 * @param none
+	 * @returns A list of the requested CommodityData objects
+	 */
 	public static List<CommodityData> getMeatData() throws IOException {
 
 		String add = BASE_URL + MeatIdentifiers.getAllMeats() + TAGS;
@@ -183,6 +209,11 @@ public class CommoditiesDataProvider {
 		return parseData(add);
 	}
 	
+	/*
+	 * Gets data for all metal commodities
+	 * @param none
+	 * @returns A list of the requested CommodityData objects
+	 */
 	public static List<CommodityData> getMetalData() throws IOException {
 
 		String add = BASE_URL + MetalIdentifiers.getAllMetals() + TAGS;
@@ -190,6 +221,11 @@ public class CommoditiesDataProvider {
 		return parseData(add);
 	}
 	
+	/*
+	 * Gets data for all soft commodities
+	 * @param none
+	 * @returns A list of the requested CommodityData objects
+	 */
 	public static List<CommodityData> getSoftData() throws IOException {
 
 		String add = BASE_URL + SoftIdentifiers.getAllSofts() + TAGS;
@@ -197,26 +233,36 @@ public class CommoditiesDataProvider {
 		return parseData(add);
 	}
 	
+	/*
+	 * Sends an HTTP GET Request to Yahoo Finance to retrieve data
+	 * @param URL String of address to send HTTP GET Request
+	 * @returns A list of the requested CommodityData objects
+	 */
 	private static List<CommodityData> parseData(String add) throws IOException {
+		// Initialize data list
 		List<CommodityData> data = new ArrayList<CommodityData>();
 
+		// Turn String into URL object
 		URL url = new URL(add);
 		HttpURLConnection conn = (HttpURLConnection) url.openConnection();
 		conn.setRequestMethod("GET");
-		
 		conn.connect();
 		InputStream in = conn.getInputStream();
 		BufferedReader reader = new BufferedReader(new InputStreamReader(in));
 		String text = null;
 		
+		// Read in data one line at a time, until all data has been read and stored.
 		while ((text = reader.readLine()) != null)	{
+			// Replace " with empty string to clean up data text
 			text = text.replace("\"", "");
 			StringTokenizer st = new StringTokenizer(text, ",");
-
+			
+			// Create new Data object to store results
 			CommodityData newData = new CommodityData(st.nextToken(), st.nextToken(), st.nextToken(),
 					st.nextToken(), st.nextToken(), st.nextToken(), st.nextToken(),	st.nextToken(), 
 					st.nextToken(), st.nextToken());
-
+			
+			// Add data to resulting data list
 			data.add(newData);
 		}
 		
