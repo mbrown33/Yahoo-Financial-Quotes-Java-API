@@ -34,140 +34,139 @@ public class CommoditiesDataProvider {
 	 * @param A list of brown.matt.data.CommodityIdentifier Strings of select data to retrieve
 	 * @returns A list of the requested CommodityData objects
 	 */
-	public static List<CommodityData> getSelectData(List<String> selections) throws IOException {
+	public static String getSelectData(List<String> selections) throws IOException {
 		StringBuilder sb = new StringBuilder();
 		boolean first = true;
 		
-		for (String select: selections) {
-			switch (select) {
-				case CommodityIdentifiers.COCOA:
+		for (int i = 0; i < selections.size(); i++) {
+				String select = selections.get(i);
+				if (select.equals(CommodityIdentifiers.COCOA)) {
 					if (!first) sb.append("+");
 					else first = false;
 					sb.append(SoftIdentifiers.getCocoa());	
-					break;
-				case CommodityIdentifiers.COFFEE:
+				}
+				else if (select.equals(CommodityIdentifiers.COFFEE)) {
 					if (!first) sb.append("+");
 					else first = false;
 					sb.append(SoftIdentifiers.getCoffee());	
-					break;
-				case CommodityIdentifiers.COPPER:
+				}
+				else if (select.equals(CommodityIdentifiers.COPPER)) {
 					if (!first) sb.append("+");
 					else first = false;
 					sb.append(MetalIdentifiers.getCopper());	
-					break;	
-				case CommodityIdentifiers.CORN:
+				}
+				else if (select.equals(CommodityIdentifiers.CORN)) {
 					if (!first) sb.append("+");
 					else first = false;
 					sb.append(GrainIdentifiers.getCorn());	
-					break;	
-				case CommodityIdentifiers.COTTON:
+				}
+				else if (select.equals(CommodityIdentifiers.COTTON)) {
 					if (!first) sb.append("+");
 					else first = false;
 					sb.append(SoftIdentifiers.getCotton());	
-					break;	
-				case CommodityIdentifiers.CRUDE_OIL:
+				}
+				else if (select.equals(CommodityIdentifiers.CRUDE_OIL)) {
 					if (!first) sb.append("+");
 					else first = false;
 					sb.append(EnergyIdentifiers.getCrudeOil());	
-					break;
-				case CommodityIdentifiers.FEEDER_CATTLE:
+				}
+				else if (select.equals(CommodityIdentifiers.FEEDER_CATTLE)) {
 					if (!first) sb.append("+");
 					else first = false;
 					sb.append(MeatIdentifiers.getFeederCattle());	
-					break;	
-				case CommodityIdentifiers.GOLD:
+				}
+				else if (select.equals(CommodityIdentifiers.GOLD)) {
 					if (!first) sb.append("+");
 					else first = false;
 					sb.append(MetalIdentifiers.getGold());	
-					break;	
-				case CommodityIdentifiers.HEATING_OIL:
+				}	
+				else if (select.equals(CommodityIdentifiers.HEATING_OIL)) {
 					if (!first) sb.append("+");
 					else first = false;
 					sb.append(EnergyIdentifiers.getHeatingOil());	
-					break;		
-				case CommodityIdentifiers.LEAN_HOGS:
+				}
+				else if (select.equals(CommodityIdentifiers.LEAN_HOGS)) {
 					if (!first) sb.append("+");
 					else first = false;
 					sb.append(MeatIdentifiers.getLeanHogs());	
-					break;
-				case CommodityIdentifiers.LIVE_CATTLE:
+				}
+				else if (select.equals(CommodityIdentifiers.LIVE_CATTLE)) {
 					if (!first) sb.append("+");
 					else first = false;
 					sb.append(MeatIdentifiers.getLiveCattle());	
-					break;
-				case CommodityIdentifiers.LUMBER:
+				}
+				else if (select.equals(CommodityIdentifiers.LUMBER)) {
 					if (!first) sb.append("+");
 					else first = false;
 					sb.append(SoftIdentifiers.getLumber());	
-					break;	
-				case CommodityIdentifiers.MILK_CLASS_III:
+				}
+				else if (select.equals(CommodityIdentifiers.MILK_CLASS_III)) {
 					if (!first) sb.append("+");
 					else first = false;
 					sb.append(MeatIdentifiers.getMilkClassIII());	
-					break;	
-				case CommodityIdentifiers.NATURAL_GAS:
+				}
+				else if (select.equals(CommodityIdentifiers.NATURAL_GAS)) {
 					if (!first) sb.append("+");
 					else first = false;
 					sb.append(EnergyIdentifiers.getNaturalGas());	
-					break;	
-				case CommodityIdentifiers.OATS:
+				}
+				else if (select.equals(CommodityIdentifiers.OATS)) {
 					if (!first) sb.append("+");
 					else first = false;
 					sb.append(GrainIdentifiers.getOats());	
-					break;	
-				case CommodityIdentifiers.ORANGE_JUICE:
+				}
+				else if (select.equals(CommodityIdentifiers.ORANGE_JUICE)) {
 					if (!first) sb.append("+");
 					else first = false;
 					sb.append(SoftIdentifiers.getOrangeJuice());	
-					break;	
-				case CommodityIdentifiers.PLATINUM:
+				}
+				else if (select.equals(CommodityIdentifiers.PLATINUM)) {
 					if (!first) sb.append("+");
 					else first = false;
 					sb.append(MetalIdentifiers.getPlatinum());	
-					break;	
-				case CommodityIdentifiers.RBOB_GAS:
+				}
+				else if (select.equals(CommodityIdentifiers.RBOB_GAS)) {
 					if (!first) sb.append("+");
 					else first = false;
 					sb.append(EnergyIdentifiers.getRBOBGas());	
-					break;	
-				case CommodityIdentifiers.SILVER:
+				}
+				else if (select.equals(CommodityIdentifiers.SILVER)) {
 					if (!first) sb.append("+");
 					else first = false;
 					sb.append(MetalIdentifiers.getSilver());	
-					break;	
-				case CommodityIdentifiers.SOYBEAN_MEAL:
+				}	
+				else if (select.equals(CommodityIdentifiers.SOYBEAN_MEAL)) {
 					if (!first) sb.append("+");
 					else first = false;
 					sb.append(GrainIdentifiers.getSoybeanMeal());	
-					break;	
-				case CommodityIdentifiers.SOYBEAN_OIL:
+				}
+				else if (select.equals(CommodityIdentifiers.SOYBEAN_OIL)) {
 					if (!first) sb.append("+");
 					else first = false;
 					sb.append(GrainIdentifiers.getSoybeanOil());	
-					break;	
-				case CommodityIdentifiers.SOYBEANS:
+				}
+				else if (select.equals(CommodityIdentifiers.SOYBEANS)) {
 					if (!first) sb.append("+");
 					else first = false;
-					sb.append(GrainIdentifiers.getSoybeans());	
-					break;	
-				case CommodityIdentifiers.SUGAR:
+					sb.append(GrainIdentifiers.getSoybeans());
+				}
+				else if (select.equals(CommodityIdentifiers.SUGAR)) {
 					if (!first) sb.append("+");
 					else first = false;
 					sb.append(SoftIdentifiers.getSugar());	
-					break;	
-				case CommodityIdentifiers.WHEAT:
+				}
+				else if (select.equals(CommodityIdentifiers.WHEAT)) {
 					if (!first) sb.append("+");
 					else first = false;
 					sb.append(GrainIdentifiers.getWheat());	
-					break;
-				default:
-					break;
-			}
+				}
+				else break;
+			
 		}
 		
 		if (!sb.toString().equals("") && sb != null) {
 			String add = BASE_URL + sb.toString() + TAGS;
-			return parseData(add);
+			return add;
 		}
 		
 		return null;
@@ -185,6 +184,13 @@ public class CommoditiesDataProvider {
 		return parseData(add);
 	}
 	
+	public static String getEnergyUrl() throws IOException {
+
+		String add = BASE_URL + EnergyIdentifiers.getAllEnergies() + TAGS;
+		
+		return add;
+	}
+	
 	/*
 	 * Gets data for all grain commodities
 	 * @param none
@@ -195,6 +201,13 @@ public class CommoditiesDataProvider {
 		String add = BASE_URL + GrainIdentifiers.getAllGrains() + TAGS;
 		
 		return parseData(add);
+	}
+	
+	public static String getGrainUrl() throws IOException {
+
+		String add = BASE_URL + GrainIdentifiers.getAllGrains() + TAGS;
+		
+		return add;
 	}
 	
 	/*
@@ -209,6 +222,13 @@ public class CommoditiesDataProvider {
 		return parseData(add);
 	}
 	
+	public static String getMeatUrl() throws IOException {
+
+		String add = BASE_URL + MeatIdentifiers.getAllMeats() + TAGS;
+		
+		return add;
+	}
+	
 	/*
 	 * Gets data for all metal commodities
 	 * @param none
@@ -221,6 +241,13 @@ public class CommoditiesDataProvider {
 		return parseData(add);
 	}
 	
+	public static String getMetalUrl() throws IOException {
+
+		String add = BASE_URL + MetalIdentifiers.getAllMetals() + TAGS;
+		
+		return add;
+	}
+	
 	/*
 	 * Gets data for all soft commodities
 	 * @param none
@@ -231,6 +258,13 @@ public class CommoditiesDataProvider {
 		String add = BASE_URL + SoftIdentifiers.getAllSofts() + TAGS;
 		
 		return parseData(add);
+	}
+	
+	public static String getSoftUrl() throws IOException {
+
+		String add = BASE_URL + SoftIdentifiers.getAllSofts() + TAGS;
+		
+		return add;
 	}
 	
 	/*
